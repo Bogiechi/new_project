@@ -3,12 +3,12 @@ import sys
 
 from loguru import logger
 
-from vtuberdata.backend import db
+from vtuberdata.backend.db import clients
 from vtuberdata.tasks.task import crawler
 
 
 def Update(dataset: str):
-    period_day = db.clients.check_history(get_mysql_financialdata_conn())
+    period_day = clients.check_history(clients.get_mysql_financialdata_conn())
     # 拿取每個爬蟲任務的參數列表，
     # 包含爬蟲資料的日期 date，例如 2021-04-10 的台股股價，
     # 資料來源 data_source，例如 twse 證交所、tpex 櫃買中心
@@ -25,5 +25,5 @@ def Update(dataset: str):
 
 
 if __name__ == "__main__":
-    dataset = sys.argv[1:]
+    dataset = sys.argv[1]
     Update(dataset)

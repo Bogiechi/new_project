@@ -12,6 +12,7 @@ from sqlalchemy import (
 )
 
 import pandas as pd
+import datetime
 
 
 def get_mysql_financialdata_conn() -> engine.base.Connection:
@@ -27,10 +28,11 @@ def get_mysql_financialdata_conn() -> engine.base.Connection:
 def check_history(
     mysql_conn: engine.base.Connection,
 ):
-    df = pd.read_sql(text("SELECT max(period) as p FROM VtuberSC"), con=mysql_conn)
+    df = pd.read_sql(text("SELECT max(period) as p, max(start_date) as sd FROM VtuberSuperChat"), con=mysql_conn)
+    period = df['p'][0]
+    start_day = df['sd'][0]
     if not(df['p'][0]):
-        period = 1610928000
+        period = 1708905600
         start_day = datetime.date(2021, 1, 18)
-    period = df[]
-    start_day = df[]
+
     return[period, start_day]
