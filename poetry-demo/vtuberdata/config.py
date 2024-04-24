@@ -9,5 +9,5 @@ MYSQL_DATA_DATABASE = os.environ.get("MYSQL_DATA_DATABASE", "vtuberdata")
 WORKER_ACCOUNT = os.environ.get("WORKER_ACCOUNT", "worker")
 WORKER_PASSWORD = os.environ.get("WORKER_PASSWORD", "worker")
 
-MESSAGE_QUEUE_HOST = os.environ.get("MESSAGE_QUEUE_HOST", "127.0.0.1")
+MESSAGE_QUEUE_HOST = os.environ.get("MESSAGE_QUEUE_HOST", "139.162.109.152")
 MESSAGE_QUEUE_PORT = int(os.environ.get("MESSAGE_QUEUE_PORT", "5672"))

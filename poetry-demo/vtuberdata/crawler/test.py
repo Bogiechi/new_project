@@ -1,19 +1,45 @@
 import datetime
 import time
 import typing
+from pydantic import BaseModel
 
 import pandas as pd
 from requests_html import HTMLSession
 from loguru import logger
 from tqdm import tqdm
-from vtuberdata.schema.dataset import (
-    check_schema,
-)
 from vtuberdata.backend.db.clients import get_mysql_financialdata_conn
+
+class VtuberSuperChat(BaseModel):
+    itemId: str
+    period: int
+    channelPlayCount: float
+    subscriberCount: float
+    subscriberFluc: float
+    maxLiveViewer: float
+    donationAmount: float
+    donationCount: int
+    rank: int
+    rankFluc: str
+    start_date: str
+    end_date: str
+    name: str
+
+def check_schema(
+    df: pd.DataFrame,
+) -> pd.DataFrame:
+    """檢查資料型態, 確保每次要上傳資料庫前, 型態正確"""
+    df_dict = df.to_dict("records")
+    df_schema = [
+        VtuberSuperChat(**dd).__dict__ # **字典的意思
+        for dd in df_dict
+    ]
+    df = pd.DataFrame(df_schema)
+    return df
 
 def clean_data(
     df: pd.DataFrame,
 ) -> pd.DataFrame:
+
     df["rank"] = [
         df["index"][col]["rank"]
         for col in df.index
@@ -47,12 +73,12 @@ def clean_data(
     a = df["start_date"].str.split("/").str[2]
     b = df["end_date"] 
     if len(b[0])< 10:
-        df["end_date"] = b+a
-
+        df["end_date"] = b+"/"+a
+    
     df = df.drop(["index"], axis=1)
     df = df.drop(["channel"], axis=1)
-    df = df.fillna("0.0")
-    
+    df = df.fillna(0.0)
+
     return df
 
 def col_name(
@@ -153,27 +179,27 @@ def period_list(
 
 def main():
     
-    for period in tqdm(period_list(period)):
-        logger.info(period)
-        df = crawler_twse(period=period)
-        if len(df) > 0:
-            # 資料清理
-            df = clean_data(df.copy())
-            # 檢查資料型態
-            df = check_schema(df.copy())
-            print(df)
+    
+        
+    df = crawler_twse(period=1711324800)
+    if len(df) > 0:
+        # 資料清理
+        df = clean_data(df.copy())
+        # 檢查資料型態
+        df = check_schema(df.copy())
+        print(df)
             
-            # upload db
-            try:
-                df.to_sql(
-                    name="VtuberSC",
-                    con=get_mysql_financialdata_conn(),
-                    if_exists="append",
-                    index=False,
-                    chunksize=1000,
-                )
-            except Exception as e:
-                logger.info(e)
+        # upload db
+        try:
+            df.to_sql(
+                name="VtuberSuperChat",
+                con=get_mysql_financialdata_conn(),
+                if_exists="append",
+                index=False,
+                chunksize=1000,
+            )
+        except Exception as e:
+            logger.info(e)
             
 
 if __name__ == "__main__":

@@ -6,11 +6,11 @@ import pandas as pd
 
 class VtuberSuperChat(BaseModel):
     itemId: str
-    period: int
+    period: str
     channelPlayCount: float
     subscriberCount: float
     subscriberFluc: float
-    maxLiveViewer: int
+    maxLiveViewer: float
     donationAmount: float
     donationCount: int
     rank: int

@@ -14,6 +14,7 @@ from vtuberdata.backend.db.clients import get_mysql_financialdata_conn
 def clean_data(
     df: pd.DataFrame,
 ) -> pd.DataFrame:
+
     df["rank"] = [
         df["index"][col]["rank"]
         for col in df.index
@@ -47,12 +48,16 @@ def clean_data(
     a = df["start_date"].str.split("/").str[2]
     b = df["end_date"] 
     if len(b[0])< 10:
-        df["end_date"] = b+a
-
+        df["end_date"] = b+"/"+a
+    
     df = df.drop(["index"], axis=1)
     df = df.drop(["channel"], axis=1)
-    df = df.fillna("0.0")
-    
+    df = df.fillna(0.0)
+    df['period'] = [
+        str(df["period"][col])
+        for col in df.index
+    ]
+
     return df
 
 def col_name(
@@ -133,19 +138,22 @@ def period_list(
     period: int,
     start_day: str
 ) -> typing.List[str]:
+    date_format = '%m/%d/%Y'
+    start_day = datetime.datetime.strptime(start_day, date_format)
     
-    today = datetime.date.today()
+    today = datetime.datetime.today()
     result = today - start_day
     w = int(result.days)//7
+    day_list = [
+        int(period) + week*604800
+        for week in range(1, w)
+    ]
     date_list = [
         dict(
-            period =
-                str(
-                    period + (week*604800)
-                ),
+            period = str(d),
             data_source = data_source,
         )
-        for week in range(1, w)
+        for d in day_list
         for data_source in [
             "vtsc",
         ]

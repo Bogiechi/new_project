@@ -8,6 +8,7 @@ packages = [
     { include = "vtuberdata" },
     { include = "vtuberdata/backend/db/clients.py" },
     { include = "vtuberdata/schema/dataset.py" },
+    { include = "vtuberdata/backend/db/db.py" },
 ]
 
 [tool.poetry.dependencies]

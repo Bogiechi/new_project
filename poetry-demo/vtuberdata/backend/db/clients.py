@@ -31,8 +31,9 @@ def check_history(
     df = pd.read_sql(text("SELECT max(period) as p, max(start_date) as sd FROM VtuberSuperChat"), con=mysql_conn)
     period = df['p'][0]
     start_day = df['sd'][0]
+
     if not(df['p'][0]):
-        period = 1708905600
-        start_day = datetime.date(2021, 1, 18)
+        period = '1708905600'
+        start_day = '2/26/2024'
 
     return[period, start_day]
