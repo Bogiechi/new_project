@@ -13,7 +13,7 @@ install-python-env:
 
 # 啟動 celery, 專門執行 twse queue 列隊的任務，
 run-celery-vtsc:
-	poetry run celery -A financialdata.tasks.worker worker --loglevel=info --concurrency=1  --hostname=%h -Q vtsc
+	poetry run celery -A vtuberdata.tasks.worker worker --loglevel=info --concurrency=1  --hostname=%h -Q vtsc
 
 # 啟動 celery, 專門執行 tpex queue 列隊的任務，
 run-celery-tpex:

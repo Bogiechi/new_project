@@ -1,13 +1,17 @@
 import os
+from dotenv import load_dotenv
 
-MYSQL_DATA_HOST = os.environ.get("MYSQL_DATA_HOST", "127.0.0.1")
-MYSQL_DATA_USER = os.environ.get("MYSQL_DATA_USER", "root")
-MYSQL_DATA_PASSWORD = os.environ.get("MYSQL_DATA_PASSWORD", "test")
-MYSQL_DATA_PORT = int(os.environ.get("MYSQL_DATA_PORT", "3306"))
-MYSQL_DATA_DATABASE = os.environ.get("MYSQL_DATA_DATABASE", "vtuberdata")
+load_dotenv()
+SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
 
-WORKER_ACCOUNT = os.environ.get("WORKER_ACCOUNT", "worker")
-WORKER_PASSWORD = os.environ.get("WORKER_PASSWORD", "worker")
+MYSQL_DATA_HOST = os.getenv('MYSQL_DATA_HOST')
+MYSQL_DATA_USER = os.getenv('MYSQL_DATA_USER')
+MYSQL_DATA_PASSWORD = os.getenv('MYSQL_DATA_PASSWORD')
+MYSQL_DATA_PORT = int(os.getenv('MYSQL_DATA_PORT'))
+MYSQL_DATA_DATABASE = os.getenv('MYSQL_DATA_DATABASE')
 
-MESSAGE_QUEUE_HOST = os.environ.get("MESSAGE_QUEUE_HOST", "139.162.109.152")
-MESSAGE_QUEUE_PORT = int(os.environ.get("MESSAGE_QUEUE_PORT", "5672"))
+WORKER_ACCOUNT = os.getenv('WORKER_ACCOUNT')
+WORKER_PASSWORD = os.getenv('WORKER_PASSWORD')
+
+MESSAGE_QUEUE_HOST = os.getenv('MESSAGE_QUEUE_HOST')
+MESSAGE_QUEUE_PORT = int(os.getenv('MESSAGE_QUEUE_PORT'))
