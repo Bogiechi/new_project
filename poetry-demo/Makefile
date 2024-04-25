@@ -33,4 +33,4 @@ gen-staging-env-variable:
 
 # 建立 release 環境變數
 gen-release-env-variable:
-	VERSION=RELEASE python genenv.py
+	VERSION=RELEASE poetry run python genenv.py
