@@ -2,7 +2,6 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
 
 MYSQL_DATA_HOST = os.getenv('MYSQL_DATA_HOST')
 MYSQL_DATA_USER = os.getenv('MYSQL_DATA_USER')
