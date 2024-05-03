@@ -1,9 +1,9 @@
 version: '3.0'
 services:
-  crawler_twse:
+  crawler_vtsc:
     image: crawler:7.2.1
     hostname: "twse"
-    command: poetry run celery -A financialdata.tasks.worker worker --loglevel=info --concurrency=1  --hostname=%h -Q twse
+    command: poetry run celery -A vtuberdata.tasks.worker worker --loglevel=info --concurrency=1  --hostname=%h -Q vtsc
     restart: always
     environment:
       - TZ=Asia/Taipei

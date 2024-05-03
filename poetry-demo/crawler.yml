@@ -1,8 +1,8 @@
 version: '3.0'
 services:
-  crawler_twse:
-    image: linsamtw/crawler:7.2.1
-    hostname: "twse"
+  crawler_vtsc:
+    image: username992/crawler:8.1
+    hostname: "vtsc"
     command: poetry run celery -A vtuberdata.tasks.worker worker --loglevel=info --concurrency=1  --hostname=%h -Q vtsc
     restart: always
     # swarm 設定

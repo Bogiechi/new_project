@@ -25,11 +25,11 @@ sent-taiwan-stock-price-task:
 
 # 建立 dev 環境變數
 gen-dev-env-variable:
-	python genenv.py
+	poetry run python genenv.py
 
 # 建立 staging 環境變數
 gen-staging-env-variable:
-	VERSION=STAGING python genenv.py
+	VERSION=STAGING poetry run python genenv.py
 
 # 建立 release 環境變數
 gen-release-env-variable:

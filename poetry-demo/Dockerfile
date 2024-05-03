@@ -12,4 +12,8 @@ WORKDIR /FinMindProject/
 # install package
 RUN curl -sSL https://install.python-poetry.org | python3 -
 ENV PATH="/root/.local/bin:$PATH"
-RUN poetry --version
+RUN poetry lock
+RUN poetry install
+
+# genenv
+RUN VERSION=RELEASE poetry run python genenv.py
