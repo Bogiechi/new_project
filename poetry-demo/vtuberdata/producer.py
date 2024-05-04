@@ -25,5 +25,7 @@ def Update(dataset: str):
 
 
 if __name__ == "__main__":
-    dataset = sys.argv[1]
+    (
+        dataset,
+    ) = sys.argv[1:]
     Update(dataset)

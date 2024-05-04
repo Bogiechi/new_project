@@ -29,6 +29,7 @@ lxml = {extras = ["html-clean"], version = "^5.2.1"}
 mysql-connector-python = "^8.3.0"
 celery = "^5.3.6"
 python-dotenv = "^1.0.1"
+apscheduler = "^3.10.4"
 
 
 [build-system]
