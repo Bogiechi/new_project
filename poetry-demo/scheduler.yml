@@ -1,7 +1,7 @@
 version: '3.0'
 services:
   scheduler:
-    image: username992/crawler:8.1
+    image: username992/crawler:8.2
     hostname: "vtsc"
     command: poetry run python vtuberdata/scheduler.py
     restart: always
