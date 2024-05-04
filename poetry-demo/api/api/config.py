@@ -1,0 +1,16 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+MYSQL_DATA_HOST = os.getenv('MYSQL_DATA_HOST')
+MYSQL_DATA_USER = os.getenv('MYSQL_DATA_USER')
+MYSQL_DATA_PASSWORD = os.getenv('MYSQL_DATA_PASSWORD')
+MYSQL_DATA_PORT = int(os.getenv('MYSQL_DATA_PORT'))
+MYSQL_DATA_DATABASE = os.getenv('MYSQL_DATA_DATABASE')
+
+WORKER_ACCOUNT = os.getenv('WORKER_ACCOUNT')
+WORKER_PASSWORD = os.getenv('WORKER_PASSWORD')
+
+MESSAGE_QUEUE_HOST = os.getenv('MESSAGE_QUEUE_HOST')
+MESSAGE_QUEUE_PORT = int(os.getenv('MESSAGE_QUEUE_PORT'))
