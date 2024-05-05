@@ -1,7 +1,7 @@
 version: '3.0'
 services:
   api:
-    image: username992/api:8.2.5
+    image: username992/api:8.2.6
     ports:
         - 8888:8888
     hostname: "api"
