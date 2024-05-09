@@ -1,0 +1,37 @@
+stages:
+  # CI pipeline
+  # 一般開發流程
+  # test 測試過了 -> 
+  #   merge 進 stage/master -> 
+  #   build 建立 docker image ->
+  #   deploy 部屬服務
+  # 會根據此順序依序進行
+  # test -> build -> deploy
+  - test
+  - build
+  - deploy
+
+# CI 名稱，test 步驟
+test-crawler: 
+    # 在 stage 設定 CI pipeline 順序
+    # 這裡 pipeline 步驟是 test
+    stage: test
+    # 運行測試的 docker image
+    # 由於我們 Dockerfile 基於
+    # continuumio/miniconda3:4.3.27 下去做設定
+    # 因此這裡測試也使用同樣的 image
+    image: continuumio/miniconda3:4.3.27
+    before_script:
+      # 測試事前準備的指令
+      # 需要先安裝環境
+      - pip install pipenv
+      - pipenv sync
+      - python3 genenv.py
+    script:
+      # 實際測試指令
+      - pipenv run pytest --cov-report term-missing --cov-config=.coveragerc --cov=./financialdata/ tests/
+    only:
+        # 設定只有在 merge requests 的情況下
+        # 才會運作此 CI
+        refs:
+          - merge_requests
