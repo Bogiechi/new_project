@@ -9,7 +9,6 @@ from tqdm import tqdm
 from vtuberdata.schema.dataset import (
     check_schema,
 )
-from vtuberdata.backend.db.clients import get_mysql_financialdata_conn
 
 def clean_data(
     df: pd.DataFrame,
@@ -52,6 +51,7 @@ def clean_data(
     
     df = df.drop(["index"], axis=1)
     df = df.drop(["channel"], axis=1)
+    df = df.drop(["date"], axis=1)
     df = df.fillna(0.0)
     df['period'] = [
         str(df["period"][col])
@@ -135,7 +135,7 @@ def crawler_vtsc(
     return df
 
 def period_list(
-    period: int,
+    period: str,
     start_day: str
 ) -> typing.List[str]:
     date_format = '%m/%d/%Y'
