@@ -1,7 +1,10 @@
 version: '3.0'
 services:
-  crawler_vtsc:
-    image: username992/crawler:8.2
+  crawler_twse:
+    build:
+      context: .
+      dockerfile: Dockerfile.cache
+    image: username992/crawler:${GIT_TAG}
     hostname: "vtsc"
     command: poetry run celery -A vtuberdata.tasks.worker worker --loglevel=info --concurrency=1  --hostname=%h -Q vtsc
     restart: always
