@@ -24,18 +24,20 @@ test-crawler:
     # 本書前一版使用 continuumio/miniconda3:4.3.27
     # 但此 image 中的 Linux 系統 - Debian 版本太舊
     # 因此改用 ubuntu 系統
-    image: ubuntu:18.04
+    image: ubuntu:22.04
     before_script:
       # 測試事前準備的指令
       # 需要先安裝環境
-      - apt-get update && apt-get install python3.6 -y && apt-get install python3-pip -y
-      - pip3 install pipenv==2020.6.2
+      - apt-get update && apt-get install python3.10 -y && apt-get install python3-pip -y
+      - curl -sSL https://install.python-poetry.org | python3 -
+      - export PATH=$PATH:$HOME/.local/bin
       - export LC_ALL=C.UTF-8 LANG=C.UTF-8
-      - pipenv sync
-      - python3 genenv.py
+      - poetry lock
+      - poetry install
+      - VERSION=RELEASE poetry run python genenv.py
     script:
       # 實際測試指令
-      - pipenv run pytest --cov-report term-missing --cov-config=.coveragerc --cov=./financialdata/ tests/
+      - poetry run pytest --cov-report term-missing --cov-config=.coveragerc --cov=./vtuberdata/ tests/
     only:
         # 設定只有在 merge requests 的情況下
         # 才會運作此 CI
@@ -56,7 +58,7 @@ build-docker-image:
       # 如下
       # docker login -u "linsamtw" -p 7777-7777-7777-7777
       # 但實務上，我們不希望 token 公開，因此會採用以下方式
-      - docker login -u "linsamtw" -p ${DOCKER_HUB_TOKEN}
+      - docker login -u "username992" -p ${DOCKER_HUB_TOKEN}
     script: 
       # 建立 image
       - make build-image
