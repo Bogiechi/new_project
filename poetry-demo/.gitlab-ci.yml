@@ -28,7 +28,7 @@ test-crawler:
     before_script:
       # 測試事前準備的指令
       # 需要先安裝環境
-      - apt-get update && apt-get install python3.10 -y && apt-get install python3-pip -y
+      - apt-get update && apt-get install python3.10 -y && apt-get install python3-pip -y && apt-get install curl -y
       - curl -sSL https://install.python-poetry.org | python3 -
       - export PATH=$PATH:$HOME/.local/bin
       - export LC_ALL=C.UTF-8 LANG=C.UTF-8
