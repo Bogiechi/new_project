@@ -33,7 +33,7 @@ def check_history(
     start_day = df['sd'][0]
 
     if not(df['p'][0]):
-        period = '1708905600'
-        start_day = '2/26/2024'
+        period = '1610928000'
+        start_day = '1/18/2021'
 
     return[period, start_day]
