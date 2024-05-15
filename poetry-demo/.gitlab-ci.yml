@@ -79,6 +79,8 @@ deploy-crawler:
     # 在 stage 設定 CI pipeline 順序
     # 這裡 pipeline 步驟是 deply
     stage: deploy
+    before_script:
+      - cd poetry-demo
     script:
       # 部屬爬蟲
       - make deploy-crawler
@@ -95,6 +97,8 @@ deploy-scheduler:
     # 在 stage 設定 CI pipeline 順序
     # 這裡 pipeline 步驟是 deply
     stage: deploy
+    before_script:
+      - cd poetry-demo
     script:
       # 部屬爬蟲 scheduler
       - make deploy-scheduler
