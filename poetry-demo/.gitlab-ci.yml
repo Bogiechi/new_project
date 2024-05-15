@@ -60,6 +60,7 @@ build-docker-image:
       # docker login -u "linsamtw" -p 7777-7777-7777-7777
       # 但實務上，我們不希望 token 公開，因此會採用以下方式
       - docker login -u "username992" -p ${DOCKER_HUB_TOKEN}
+      - cd poetry-demo
     script: 
       # 建立 image
       - make build-image
