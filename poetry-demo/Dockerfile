@@ -11,7 +11,7 @@ WORKDIR /FinMindProject/
 
 # install package
 RUN curl -sSL https://install.python-poetry.org | python3 -
-ENV PATH="/root/.local/bin:$PATH"
+ENV PATH="${PATH}:/root/.local/bin"
 RUN poetry lock
 RUN poetry install
 
