@@ -778,6 +778,10 @@ def test_period_list():
             "period": "1714348800",
             "data_source": "vtsc",
         },
+        {
+            "period": "1714953600",
+            "data_source": "vtsc",
+        },
     ]
     # 預期得到 2021-01-01 ~ 2021-01-05 的任務參數列表
     # 再發送這些參數到 rabbitmq, 給每個 worker 單獨執行爬蟲
