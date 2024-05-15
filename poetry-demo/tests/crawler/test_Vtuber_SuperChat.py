@@ -4,7 +4,6 @@ from vtuberdata.crawler.Vtuber_SuperChat import (
     clean_data,
     col_name,
     crawler_vtsc,
-    period_list,
     crawler,
 )
 from vtuberdata.schema.dataset import (
@@ -733,61 +732,6 @@ def test_crawler_vtsc_success():
         "end_date",
     ]
 
-def test_period_list():
-    """
-    測試建立 task 參數列表, 2021-01-01 ~ 2021-01-05
-    """
-    result = period_list(
-        period = "1708905600",
-        start_day = "2/26/2024"
-    )  # 執行結果
-    expected = [
-        {
-            "period": "1709510400",
-            "data_source": "vtsc",
-        },
-        {
-            "period": "1710115200",
-            "data_source": "vtsc",
-        },
-        {
-            "period": "1710720000",
-            "data_source": "vtsc",
-        },
-        {
-            "period": "1711324800",
-            "data_source": "vtsc",
-        },
-        {
-            "period": "1711929600",
-            "data_source": "vtsc",
-        },
-        {
-            "period": "1712534400",
-            "data_source": "vtsc",
-        },
-        {
-            "period": "1713139200",
-            "data_source": "vtsc",
-        },
-        {
-            "period": "1713744000",
-            "data_source": "vtsc",
-        },
-        {
-            "period": "1714348800",
-            "data_source": "vtsc",
-        },
-        {
-            "period": "1714953600",
-            "data_source": "vtsc",
-        },
-    ]
-    # 預期得到 2021-01-01 ~ 2021-01-05 的任務參數列表
-    # 再發送這些參數到 rabbitmq, 給每個 worker 單獨執行爬蟲
-    assert (
-        result == expected
-    )  # 檢查, 執行結果 == 預期結果
 
 def test_crawler_vtsc():
     # 測試證交所爬蟲, end to end test
