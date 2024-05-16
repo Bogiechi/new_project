@@ -81,6 +81,9 @@ deploy-crawler:
     stage: deploy
     before_script:
       - cd poetry-demo
+      - eval $(ssh-agent -s)
+      - ssh-add <(echo "$SERVER_PRIVATE_KEY")
+      - ssh -o StrictHostKeyChecking=no root@$SERVER_URL
     script:
       # 部屬爬蟲
       - make deploy-crawler
@@ -99,6 +102,9 @@ deploy-scheduler:
     stage: deploy
     before_script:
       - cd poetry-demo
+      - eval $(ssh-agent -s)
+      - ssh-add <(echo "$SERVER_PRIVATE_KEY")
+      - ssh -o StrictHostKeyChecking=no root@$SERVER_URL
     script:
       # 部屬爬蟲 scheduler
       - make deploy-scheduler
