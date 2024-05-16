@@ -84,7 +84,7 @@ deploy-crawler:
       - eval $(ssh-agent -s)
       - ssh-add <(echo "$SERVER_PRIVATE_KEY" | base64 -d)
     script:
-      - ssh -ott StrictHostKeyChecking=no root@$SERVER_URL
+      - ssh -tt -o StrictHostKeyChecking=no root@$SERVER_URL
       # 部屬爬蟲
       - make deploy-crawler
     tags:
@@ -105,7 +105,7 @@ deploy-scheduler:
       - eval $(ssh-agent -s)
       - ssh-add <(echo "$SERVER_PRIVATE_KEY" | base64 -d)
     script:
-      - ssh -ott StrictHostKeyChecking=no root@$SERVER_URL
+      - ssh -tt -o StrictHostKeyChecking=no root@$SERVER_URL
       # 部屬爬蟲 scheduler
       - make deploy-scheduler
     tags:
