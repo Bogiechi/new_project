@@ -26,7 +26,7 @@ def Update(dataset: str):
         # queue 參數，可以指定要發送到特定 queue 列隊中
         task.apply_async(queue=parameter.get("data_source", ""))
 
-    router.close_connection()
+    #router.close_connection()
 
 
 if __name__ == "__main__":
