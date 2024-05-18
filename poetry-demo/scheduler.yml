@@ -1,8 +1,11 @@
 version: '3.0'
 services:
   scheduler:
-    image: username992/crawler:8.2
-    hostname: "vtsc"
+    build:
+      context: .
+      dockerfile: Dockerfile.cache
+    image: username992/crawler:${GIT_TAG}
+    hostname: "twse"
     command: poetry run python vtuberdata/scheduler.py
     restart: always
     # swarm 設定
