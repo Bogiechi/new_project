@@ -3,7 +3,10 @@ import sys
 
 from loguru import logger
 
-from vtuberdata.backend.db import clients
+from vtuberdata.backend.db import (
+    clients,
+    router,
+)
 from vtuberdata.tasks.task import crawler
 
 
