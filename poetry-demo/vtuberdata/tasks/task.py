@@ -5,7 +5,7 @@ from vtuberdata.backend.db import db
 from vtuberdata.backend.db import clients
 from vtuberdata.tasks.worker import app
 
-
+#怎摩會
 # 註冊 task, 有註冊的 task 才可以變成任務發送給 rabbitmq
 @app.task()
 def crawler(dataset: str, parameter: typing.Dict[str, str]):
@@ -20,4 +20,4 @@ def crawler(dataset: str, parameter: typing.Dict[str, str]):
     db_dataset = dict(
         Vtuber_SuperChat="VtuberSuperChat",
     )
-    db.upload_data(df, db_dataset.get(dataset), clients.get_mysql_financialdata_conn())
+    db.upload_data(df, db_dataset.get(dataset), clients.get_mysql_vtuberdata_conn())
