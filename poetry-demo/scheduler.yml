@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile.cache
     image: username992/crawler:${GIT_TAG}
-    hostname: "twse"
+    hostname: "vtsc"
     command: poetry run python vtuberdata/scheduler.py
     restart: always
     # swarm 設定
