@@ -200,7 +200,8 @@ def period_list(
         )
         for d in day_list
         for data_source in [
-            "vtsc",
+            "vtsc"
+            "vtmv",
         ]
     ]
     return date_list
