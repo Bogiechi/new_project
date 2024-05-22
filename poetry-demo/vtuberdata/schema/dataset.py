@@ -8,6 +8,7 @@ class VtuberSuperChat(BaseModel):
     itemId: str
     period: str
     channelPlayCount: float
+    channelPlayFluc: float
     subscriberCount: float
     subscriberFluc: float
     maxLiveViewer: float
