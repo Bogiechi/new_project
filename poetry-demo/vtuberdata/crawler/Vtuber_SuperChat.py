@@ -227,7 +227,7 @@ def crawler(
             dataset="VtuberSuperChat",
         )
     if data_source == "vtmv":
-        df = crawler_vtsc(period)
+        df = crawler_vtmv(period)
         df = check_schema(
             df.copy(),
             dataset="VtuberSuperChat",
