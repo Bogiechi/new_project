@@ -89,51 +89,6 @@ def col_name(
     df = df.drop([""], axis=1)
     return df
 
-def crawler_vtmv(
-    period: str,
-) -> pd.DataFrame:
-    # headers 中的 Request url
-    url = (
-            "https://api.playboard.co/v1/chart/channel"
-            "?locale=en&countryCode=TW&period={period}&size=20&chartTypeId=10&periodTypeId=3&indexDimensionId=41&indexTypeId=3&indexTarget=v-tuber&indexCountryCode=JP"
-        )
-    url_date = (
-            "https://playboard.co/en/youtube-ranking/most-superchatted-v-tuber-channels-in-japan-weekly?period={period}"
-        )
-    url = url.format(
-        period = period
-    )
-    url_date = url_date.format(
-        period = period
-    )
-    # request method
-    session = HTMLSession()
-    r = session.get(url)
-    time.sleep(5)
-
-    try:
-        df = pd.DataFrame(r.json()["list"])# dataframe注意大小寫
-        colname = df.columns
-    except BaseException:
-        return pd.DataFrame()
-    
-    if len(df) == 0:
-        return pd.DataFrame()
-    
-    df = col_name(
-        df.copy(), colname
-    )
-
-    r = session.get(url_date)
-    df["date"] = [
-            r.html.xpath(
-                '/html/body/div/div/div/div[1]/main/div[2]/div[2]/div[1]/div/div[1]'
-                )[0].text
-        for index in df.index
-    ]
-    df = clean_data(df.copy())
-    return df
-
 def crawler_vtsc(
     period: str,
 ) -> pd.DataFrame:
@@ -201,7 +156,6 @@ def period_list(
         for d in day_list
         for data_source in [
             "vtsc",
-            "vtmv",
         ]
     ]
     return date_list
@@ -223,13 +177,7 @@ def crawler(
     )
     if data_source == "vtsc":
         df = crawler_vtsc(period)
-        df = check_schema(
-            df.copy(),
-            dataset="VtuberSuperChat",
-        )
-    if data_source == "vtmv":
-        df = crawler_vtmv(period)
-        df = check_schema(
+    df = check_schema(
             df.copy(),
             dataset="VtuberSuperChat",
         )
