@@ -47,7 +47,7 @@
 
 3. 安裝Gitlab-Runner：
     ```bash
-    sudo curl -L --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/            gitlab-runner-linux-amd64
+    sudo curl -L --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64
 
     sudo chmod +x /usr/local/bin/gitlab-runner
 
@@ -81,22 +81,24 @@
     docker swarm join --token YourToken
     ```
 
-7. 訪問Redash Dashboard：
+7. 部屬的前置步驟：
     ![步驟一](https://github.com/Bogiechi/Vtuberdata/issues/1#issue-2317018463)
     ![步驟二](https://github.com/Bogiechi/Vtuberdata/issues/2#issue-2317018814)
 
-8. SSH到manager機器部屬Mysql、Rabbitmq：
+8. SSH到manager機器部屬Mysql、Rabbitmq、Redash：
     ```bash
     docker stack deploy --with-registry-auth -c mysql.yml mysql
     docker stack deploy --with-registry-auth -c rabbitmq.yml rabbitmq
+    docker stack deploy -c redash.yml redash
     ```
 
 ## 使用說明
 - push程式碼以及建立新的tag後，便會觸發CICD
+- 自動部屬爬蟲和schedular
 
 ## 相關文檔
 - [數據架構](username/data-architecture.md)
 - [數據轉換過程](username/data-transformation.md)
 
 ## 聯繫方式
-如果有任何問題，請通過sss96437@gmail.com與我們聯繫。
+如果有任何問題，請通過sss96437@gmail.com聯繫。
