@@ -118,13 +118,13 @@
 ```
 
 ## 清洗過程
-篩掉無用資料
-將空值轉換為0.0
-自行增加date資料並轉換為str格式
+- 篩掉無用資料
+- 將空值轉換為0.0
+- 自行增加date資料並轉換為str格式
 
 ## 數據存儲
-使用 SQLAlchemy 清洗後的數據存儲到 MySQL 數據庫中。
+- 使用 SQLAlchemy 清洗後的數據存儲到 MySQL 數據庫中。
 
 ## 數據展示
-在 Redash 中創建數據儀表板，使用 SQL 查詢從 MySQL 數據庫中提取數據，並以圖表形式展示。
+- 在 Redash 中創建數據儀表板，使用 SQL 查詢從 MySQL 數據庫中提取數據，並以圖表形式展示。
 數據儀表板 : http://chidashboard.ddns.net/public/dashboards/yjlyFqmtEWUbu7hU9Q0tbNAErF0fiPglcTpMBMMV?org_slug=default

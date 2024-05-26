@@ -84,6 +84,7 @@
 7. 部屬的前置步驟：
     ![步驟一](https://gitlab.com/sss96437/username/-/blob/e3735ccd7a34421f7acbed8a426cb138a4235673/step1.png)
     ![步驟二](https://gitlab.com/sss96437/username/-/blob/e3735ccd7a34421f7acbed8a426cb138a4235673/step2.png)
+    - [create mysql table](poetry-demo/data-architecture.md)
 
 8. SSH到manager機器部屬Mysql、Rabbitmq、Redash：
     ```bash
