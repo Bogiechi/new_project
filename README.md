@@ -82,8 +82,8 @@
     ```
 
 7. 部屬的前置步驟：
-    ![步驟一](https://github.com/Bogiechi/Vtuberdata/issues/1#issue-2317018463)
-    ![步驟二](https://github.com/Bogiechi/Vtuberdata/issues/2#issue-2317018814)
+    ![步驟一](https://gitlab.com/sss96437/username/-/blob/e3735ccd7a34421f7acbed8a426cb138a4235673/step1.png)
+    ![步驟二](https://gitlab.com/sss96437/username/-/blob/e3735ccd7a34421f7acbed8a426cb138a4235673/step2.png)
 
 8. SSH到manager機器部屬Mysql、Rabbitmq、Redash：
     ```bash
@@ -93,12 +93,12 @@
     ```
 
 ## 使用說明
-- push程式碼以及建立新的tag後，便會觸發CICD
+- 在本機或測試機push程式碼以及建立新的tag後，便會觸發CICD
 - 自動部屬爬蟲和schedular
 
 ## 相關文檔
-- [數據架構](username/data-architecture.md)
-- [數據轉換過程](username/data-transformation.md)
+- [數據架構](./data-architecture.md)
+- [數據轉換過程](./data-transformation.md)
 
 ## 聯繫方式
 如果有任何問題，請通過sss96437@gmail.com聯繫。
