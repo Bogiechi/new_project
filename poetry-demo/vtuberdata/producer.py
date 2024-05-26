@@ -13,8 +13,7 @@ from vtuberdata.tasks.task import crawler
 def Update(dataset: str):
     period_day = clients.check_history(clients.get_mysql_vtuberdata_conn())
     # 拿取每個爬蟲任務的參數列表，
-    # 包含爬蟲資料的日期 date，例如 2021-04-10 的台股股價，
-    # 資料來源 data_source，例如 twse 證交所、tpex 櫃買中心
+    # 資料來源 data_source，例如 vtsc
     parameter_list = getattr(
         importlib.import_module(f"vtuberdata.crawler.{dataset}"),
         "period_list",

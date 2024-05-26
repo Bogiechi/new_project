@@ -18,12 +18,8 @@ test-crawler:
     stage: test
     # 運行測試的 docker image
     # 由於我們 Dockerfile 基於
-    # ubuntu:18.04 下去做設定
+    # ubuntu:22.04 下去做設定
     # 因此這裡測試也使用同樣的 image
-    
-    # 本書前一版使用 continuumio/miniconda3:4.3.27
-    # 但此 image 中的 Linux 系統 - Debian 版本太舊
-    # 因此改用 ubuntu 系統
     image: ubuntu:22.04
     before_script:
       # 測試事前準備的指令
@@ -56,8 +52,6 @@ build-docker-image:
       # 登入部分，這裡使用 token 做登入，可參考以下連結
       # https://docs.docker.com/docker-hub/access-tokens/#create-an-access-token
       # token 你可以使用明碼，或是存入 gitlab CICD Variables，用變數的方式引用
-      # 如下
-      # docker login -u "linsamtw" -p 7777-7777-7777-7777
       # 但實務上，我們不希望 token 公開，因此會採用以下方式
       - docker login -u "username992" -p ${DOCKER_HUB_TOKEN}
       - cd poetry-demo

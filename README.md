@@ -96,6 +96,7 @@
 ## 使用說明
 - 在本機或測試機push程式碼以及建立新的tag後，便會觸發CICD
 - 自動部屬爬蟲和schedular
+- schedular每周一下午三點自動爬最新的資料下來
 
 ## 相關文檔
 - [數據架構](./data-architecture.md)
