@@ -128,3 +128,11 @@
 ## 數據展示
 - 在 Redash 中創建數據儀表板，使用 SQL 查詢從 MySQL 數據庫中提取數據，並以圖表形式展示。
 數據儀表板 : http://chidashboard.ddns.net/public/dashboards/yjlyFqmtEWUbu7hU9Q0tbNAErF0fiPglcTpMBMMV?org_slug=default
+
+## 技術細節
+
+### 分散式爬蟲：RabbitMQ 作為消息隊列，Celery 作為任務隊列，分發和執行爬蟲任務，實現高效的分散式數據爬取，同時避免頻繁爬蟲被ban ip。
+### 數據庫：使用 MySQL 資料庫存儲和管理清洗後的數據，確保數據的一致性和可靠性。
+### 數據可視化：Redash 創建的數據儀表板，提供豐富的可視化圖表和報告，幫助用戶理解和分析數據。
+### 容器化部署：使用 Docker 容器化應用，通過 Docker Swarm 管理容器的調度和運行，實現應用的高可用性和可擴展性。
+### CI/CD：配置 GitLab CI/CD pipeline，實現程式碼的自動化測試和部署，確保應用的穩定性和可靠性。
