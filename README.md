@@ -78,7 +78,7 @@
 
 6. SSH到另一台機器重複一、二步驟，並加入worker：
     ```bash
-    docker swarm join --token YourToken
+    docker swarm join --token <YourToken>
     ```
 
 7. 部屬的前置步驟：
