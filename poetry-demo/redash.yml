@@ -33,6 +33,7 @@ services:
         # ||：代表 or，在多個 router 時使用
         - traefik.http.routers.api-https.rule=
           Host(`chidashboard.ddns.net`) && PathPrefix(`/public/dashboards/yjlyFqmtEWUbu7hU9Q0tbNAErF0fiPglcTpMBMMV`) ||
+          Host(`chidashboard.ddns.net`) && PathPrefix(`/setup`) ||
           Host(`chidashboard.ddns.net`)
         # api loading balance 的 port
         # traefik 的好處之一，會幫你處理分流
