@@ -96,6 +96,7 @@ services:
       SQLALCHEMY_ENABLE_POOL_PRE_PING: 1
     networks:
         - my_network
+        - traefik-public
 
   scheduler:
     # 用於 redash 相關的 scheduler 排程
@@ -122,6 +123,7 @@ services:
       SQLALCHEMY_ENABLE_POOL_PRE_PING: 1
     networks:
         - my_network
+        - traefik-public
   
   scheduled_worker:
     # 分散式中的 worker 
@@ -148,6 +150,7 @@ services:
       SQLALCHEMY_ENABLE_POOL_PRE_PING: 1
     networks:
         - my_network
+        - traefik-public
 
   adhoc_worker:
     image: redash/redash:10.1.0.b50633
@@ -173,6 +176,7 @@ services:
       SQLALCHEMY_ENABLE_POOL_PRE_PING: 1
     networks:
         - my_network
+        - traefik-public
 
   redis:
     # redis 資料庫
@@ -182,6 +186,7 @@ services:
       - redis-redash:/bitnami/redis/data
     networks:
         - my_network
+        - traefik-public
 
   postgres:
     # postgres 資料庫
@@ -200,6 +205,7 @@ services:
     restart: always
     networks:
         - my_network
+        - traefik-public
 
   nginx:
     # 網頁伺服器
@@ -209,6 +215,7 @@ services:
     restart: always
     networks:
         - my_network
+        - traefik-public
 
 networks:
   my_network:
