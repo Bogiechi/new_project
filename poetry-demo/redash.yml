@@ -13,7 +13,7 @@ services:
     # redash 啟動 server 指令
     command: server
     ports:
-      - published: 5000
+      - published: 80
         mode: host
     deploy:
       mode: replicated
