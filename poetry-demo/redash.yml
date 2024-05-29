@@ -12,12 +12,12 @@ services:
     restart: always
     # redash 啟動 server 指令
     command: server
-    # redash 使用 5000 port
-    ports:
-      - target: 5000
-        published: 5000
-        mode: host
-    labels:
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.labels.redash == true]
+      labels:
         - traefik.enable=true
         - traefik.frontend.passHostHeader=true
         # routers 設定，
