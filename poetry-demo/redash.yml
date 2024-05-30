@@ -35,7 +35,7 @@ services:
           Host(`chidashboard.ddns.net`)
         # api loading balance 的 port
         # traefik 的好處之一，會幫你處理分流
-        - traefik.http.services.api-https.loadbalancer.server.port=80
+        - traefik.http.services.api-https.loadbalancer.server.port=5000
         # SSL 設定
         - traefik.http.routers.api-https.tls.certresolver=myresolver
         # http 自動導向 https
