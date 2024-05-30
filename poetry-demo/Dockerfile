@@ -7,7 +7,12 @@ RUN apt-get update && apt-get install python3.10 -y && apt-get install python3-p
 
 RUN mkdir /FinMindProject
 COPY . /FinMindProject/
+COPY ./airflow.cfg /FinMindProject/dataflow/airflow.cfg
 WORKDIR /FinMindProject/
+
+# env
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
 
 # install package
 RUN curl -sSL https://install.python-poetry.org | python3 -
@@ -15,5 +20,10 @@ ENV PATH="${PATH}:/root/.local/bin"
 RUN poetry lock
 RUN poetry install
 
-# genenv
-RUN VERSION=RELEASE poetry run python genenv.py
+# airflow
+ARG AIRFLOW_USER_HOME=/FinMindProject/dataflow
+ARG AIRFLOW_DEPS=""
+ARG PYTHON_DEPS=""
+ENV AIRFLOW_HOME=${AIRFLOW_USER_HOME}
+
+WORKDIR /FinMindProject/
