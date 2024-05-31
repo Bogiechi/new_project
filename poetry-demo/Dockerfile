@@ -20,6 +20,9 @@ ENV PATH="${PATH}:/root/.local/bin"
 RUN poetry lock
 RUN poetry install
 
+# genenv
+RUN VERSION=RELEASE poetry run python genenv.py
+
 # airflow
 ARG AIRFLOW_USER_HOME=/FinMindProject/dataflow
 ARG AIRFLOW_DEPS=""
