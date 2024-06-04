@@ -15,8 +15,6 @@ services:
           - mysql:/var/lib/mysql
       # swarm 設定
       deploy:
-        restart_policy:
-          condition: on-failure
         mode: replicated
         replicas: 1
         placement:
@@ -39,8 +37,6 @@ services:
         - mysql
       # swarm 設定
       deploy:
-        restart_policy:
-            condition: on-failure
         mode: replicated
         replicas: 1
         placement:
