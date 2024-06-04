@@ -10,7 +10,7 @@ from airflow.operators.dummy_operator import (
 with airflow.DAG(
     dag_id="Vtuber_SuperChat",
     # 設定每天 17:00 執行爬蟲
-    schedule_interval="0 15 * * 2",
+    schedule_interval="30 15 * * 2",
     max_active_runs=1,
     # 設定參數，Airflow 除了按按鈕，單純的執行外
     # 也可以在按按鈕時，帶入特定參數
