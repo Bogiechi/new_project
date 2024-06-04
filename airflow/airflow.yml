@@ -49,12 +49,12 @@ services:
   webserver:
     image: username992/dataflow:12.8
     hostname: "airflow-webserver"
-    command: poetry run airflow webserver -p 8888
+    command: poetry run airflow webserver -p 7777
     depends_on:
       - initdb
     restart: always
     ports:
-        - 8888:8888
+        - 7777:7777
     environment:
       - TZ=Asia/Taipei
     # swarm 設定
